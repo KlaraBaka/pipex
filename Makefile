@@ -1,4 +1,4 @@
-NAME		=	pipex
+NAME		=	pipex // цель
 
 FLAGS		=	-Wall -Wextra -Werror
 OPTFLAGS	=	-O2
@@ -6,7 +6,7 @@ OPTFLAGS	=	-O2
 HEADER		=	pipex.h
 
 SRCS		=	pipex.c main.c utils.c
-LIBFT		=	libft/libft.a
+LIBFT		=	libft/libft.a // если запускаем с либой, то обязательно добавляем библиотеку либы.
 
 
 OBJS		=	$(SRCS:.c=.o)
@@ -15,13 +15,13 @@ OBJS		=	$(SRCS:.c=.o)
 all:		$(NAME)
 
 $(NAME):	$(OBJS) $(LIBFT)
-				cc $(FLAGS) $(OPTFLAGS) $(OBJS) -o $(NAME) $(LIBFT)
+				cc $(FLAGS) $(OPTFLAGS) $(OBJS) -o $(NAME) $(LIBFT) // зависимость от файлов либы тоже
 
 %.o	:	%.c $(HEADER) Makefile 
 				cc ${FLAGS} -c $< -o $@
 
 $(LIBFT) :  libft/*.h libft/*.c libft/Makefile
-				@make -C libft
+				@make -C libft // make для либы
 clean:		
 				@rm -rf $(OBJS)
 				@${MAKE} -C libft clean
